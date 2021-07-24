@@ -1,0 +1,15 @@
+---
+-
+  become: true
+  hosts: localhost
+  tasks:
+    -
+      name: "Install Docker"
+      yum:
+        name: docker
+        state: latest
+    -
+      name: "Start Docker service"
+      service:
+        name: docker
+        state: started
