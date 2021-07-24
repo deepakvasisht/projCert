@@ -1,0 +1,43 @@
+---
+-
+  become: true
+  hosts: localhost
+  tasks:
+    -
+      name: "Install Git"
+      package:
+        name: git
+        state: present
+    -
+      name: "update repos"
+      yum:
+        name: "*"
+        state: latest
+    -
+      name: "installing openJDK"
+      yum:
+        name: java-1.8.0-openjdk
+    -
+      command: "wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+      name: "download Chrome browser"
+    -
+      command: "sudo yum localinstall google-chrome-stable_current_x86_64.rpm -y"
+      name: "Install Chrome browser"
+    -
+      command: "sudo yum upgrade google-chrome-stable"
+      name: "Run update"
+    -
+      command: "wget https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip"
+      name: "Download Chromedriver"
+    -
+      command: "sudo yum makecache"
+      name: "Update yum Package for unzip"
+    -
+      command: "sudo yum install unzip -y"
+      name: "Install unzip"
+    -
+      command: "unzip chromedriver_linux64.zip"
+      name: "unzip chromedriver"
+    -
+      command: "mv chromedriver /usr/local/bin/"
+      name: "move chromedriver"
