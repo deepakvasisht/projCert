@@ -1,7 +1,7 @@
 ---
 -
   become: true
-  hosts: localhost
+  hosts: webservers
   tasks:
     -
       name: "Install Git"
